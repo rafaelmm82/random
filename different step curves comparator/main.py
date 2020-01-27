@@ -23,25 +23,38 @@ nc5 = curve_fit(pn5, start=0, end=40, step=3000)
 
 # %%
 
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.plot(pn1[:, 0], pn1[:, 1], 'C1', label='Original')
+ax.plot(nc1[0, :], nc1[1, :], 'C5', label='Approximate')
+ax.legend()
+plt.show()
+
+
+
+# %%
+
 
 # Before
 
-fig, ax = plt.subplots(figsize=(6, 3))
-ax.plot(nc1[0, :], nc1[1, :], 'C1', label='C1')
-ax.plot(nc1[0, :], nc2[1, :], 'C2', label='C2')
-ax.plot(nc1[0, :], nc3[1, :], 'C3', label='C3')
-ax.plot(nc1[0, :], nc4[1, :], 'C4', label='C4')
-ax.plot(nc1[0, :], nc5[1, :], 'C5', label='C5')
+# fig, ax = plt.subplots(figsize=(12, 6))
+fig, ax = plt.subplots()
+plt.gca().set_aspect('equal', adjustable='box')
+plt.ylim(-1, 6)
+ax.plot(nc1[0, :2500], nc1[1, :2500], 'C1', label='C1')
+ax.plot(nc1[0, :2500], nc2[1, :2500], 'C2', label='C2')
+ax.plot(nc1[0, :2500], nc3[1, :2500], 'C3', label='C3')
+ax.plot(nc1[0, :2500], nc4[1, :2500], 'C4', label='C4')
+ax.plot(nc1[0, :2500], nc5[1, :2500], 'C5', label='C5')
 ax.legend()
 plt.show()
 
 # %%
 # After
-all_curves = np.array([nc1[1, :],
-                       nc2[1, :],
-                       nc3[1, :],
-                       nc4[1, :],
-                       nc5[1, :]])
+all_curves = np.array([nc1[1, :2500],
+                       nc2[1, :2500],
+                       nc3[1, :2500],
+                       nc4[1, :2500],
+                       nc5[1, :2500]])
 
 all_mean = all_curves.mean(axis=0)
 all_std = all_curves.std(axis=0)
@@ -50,13 +63,17 @@ under_line = all_mean - all_std
 
 # %%
 # plot after
-fig, ax = plt.subplots(figsize=(6, 3))
-plt.plot(nc1[0, :], nc1[1, :], color='gray', linewidth=0.5, alpha=0.8)
-plt.plot(nc1[0, :], nc2[1, :], color='gray', linewidth=0.5, alpha=0.8)
-plt.plot(nc1[0, :], nc3[1, :], color='gray', linewidth=0.5, alpha=0.8)
-plt.plot(nc1[0, :], nc4[1, :], color='gray', linewidth=0.5, alpha=0.8)
-plt.plot(nc1[0, :], nc5[1, :], color='gray', linewidth=0.5, alpha=0.8)
-plt.plot(nc1[0, :], all_mean, linewidth=2) #mean curve.
-plt.fill_between(nc1[0, :], under_line, over_line, color='b', alpha=.1) #std curves.
+# fig, ax = plt.subplots(figsize=(200, 6))
+# plt.axis('equal')
+plt.gca().set_aspect('equal', adjustable='box')
+plt.ylim(-1, 6)
+plt.plot(nc1[0, :2500], nc1[1, :2500], color='gray', linewidth=0.5, alpha=0.8)
+plt.plot(nc1[0, :2500], nc2[1, :2500], color='gray', linewidth=0.5, alpha=0.8)
+plt.plot(nc1[0, :2500], nc3[1, :2500], color='gray', linewidth=0.5, alpha=0.8)
+plt.plot(nc1[0, :2500], nc4[1, :2500], color='gray', linewidth=0.5, alpha=0.8)
+plt.plot(nc1[0, :2500], nc5[1, :2500], color='gray', linewidth=0.5, alpha=0.8)
+plt.plot(nc1[0, :2500], all_mean, linewidth=2) #mean curve.
+plt.fill_between(nc1[0, :2500], under_line, over_line, color='b', alpha=.1) #std curves.
 
 plt.show()
+
