@@ -50,7 +50,7 @@ under_line = all_mean - all_std
 
 # %%
 # plot after
-
+fig, ax = plt.subplots(figsize=(6, 3))
 plt.plot(nc1[0, :], nc1[1, :], color='gray', linewidth=0.5, alpha=0.8)
 plt.plot(nc1[0, :], nc2[1, :], color='gray', linewidth=0.5, alpha=0.8)
 plt.plot(nc1[0, :], nc3[1, :], color='gray', linewidth=0.5, alpha=0.8)
